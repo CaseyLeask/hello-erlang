@@ -1,6 +1,9 @@
 -module(useless).
 
--export([add/2]).
+-export([add/2, hello/0]).
 
 add(A, B) ->
   A + B.
+
+hello() ->
+  io:format("Hello, World!~n").
