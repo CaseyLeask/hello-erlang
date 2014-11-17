@@ -1,4 +1,4 @@
--module(functions).
+-module(recursive).
 
 -export([factorial/1, len/1, duplicate/2, reverse/1]).
 
