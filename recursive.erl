@@ -1,6 +1,6 @@
 -module(recursive).
 
--export([factorial/1, len/1, duplicate/2, reverse/1]).
+-export([factorial/1, len/1, duplicate/2, sublist/2]).
 
 factorial(N) when is_integer(N), N > 0 -> tail_factorial(N, 1).
 
@@ -17,7 +17,8 @@ duplicate(N, Term) when is_integer(N), N >= 0 -> tail_duplicate(N, Term, []).
 tail_duplicate(0, _, Accumulator) -> Accumulator;
 tail_duplicate(N, Term, Accumulator) -> tail_duplicate(N - 1, Term, [Term|Accumulator]).
 
-reverse(List) when is_list(List) -> tail_reverse(List, []).
+sublist(L, N) when is_list(L), is_integer(N) -> lists:reverse(tail_sublist(L, N, [])).
 
-tail_reverse([], Accumulator) -> Accumulator;
-tail_reverse([H|T], Accumulator) -> tail_reverse(T, [H|Accumulator]).
+tail_sublist(_, 0, Sublist) -> Sublist;
+tail_sublist([], _, Sublist) -> Sublist;
+tail_sublist([H|T], N, Sublist) -> tail_sublist(T, N - 1, [H|Sublist]).
