@@ -15,9 +15,9 @@ insert(Key, Val, {node, {Key, _, Smaller, Larger}}) ->
 
 lookup(_, {node, 'nil'}) ->
   undefined;
-lookup(Key, {node, {Key, Value, _, _}}) ->
-  {ok, Value};
-lookup(IndexKey, {node, {Key, _, Smaller, _}}) when IndexKey < Key ->
-  lookup(IndexKey, Smaller);
+lookup(Key, {node, {Key, Val, _, _}}) ->
+  {ok, Val};
+lookup(Key, {node, {NodeKey, _, Smaller, _}}) when Key < NodeKey ->
+  lookup(Key, Smaller);
 lookup(Key, {node, {_, _, _, Larger}}) ->
   lookup(Key, Larger).
