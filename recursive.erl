@@ -1,6 +1,6 @@
 -module(recursive).
 
--export([factorial/1, len/1, duplicate/2, sublist/2, zip/2]).
+-export([factorial/1, len/1, duplicate/2, sublist/2, zip/2, fibonacci/1]).
 
 factorial(N) when is_integer(N), N > 0 -> tail_factorial(N, 1).
 
@@ -28,3 +28,10 @@ zip(L1, L2) -> lists:reverse(tail_zip(L1, L2, [])).
 tail_zip([], _, Zipped) -> Zipped;
 tail_zip(_, [], Zipped) -> Zipped;
 tail_zip([H1|T1], [H2|T2], Zipped) -> tail_zip(T1, T2, [{H1, H2}|Zipped]).
+
+fibonacci(0) -> 1;
+fibonacci(1) -> 1;
+fibonacci(N) when N > 1 -> fib_up(N, 1, 1).
+
+fib_up(0, A, _B) -> A;
+fib_up(N, A, B) -> fib_up(N - 1, B, A + B).
